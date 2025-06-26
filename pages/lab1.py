@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'Malgun Gothic'
-
 st.title("lab1")
 url = "https://raw.githubusercontent.com/myoh0623/dataset/refs/heads/main/student-mat.csv"
 df = pd.read_csv(url)
@@ -14,15 +11,15 @@ gender_score = df.groupby("sex")["G3"].mean()
 
 st.bar_chart(gender_score)
 
-# stduy time mean
-st.subheader("2. 공부 시간에 따른 평균 최종 성적")
-studytime_score = df.groupby("studytime")["G3"].mean()
 
-st.bar_chart(studytime_score)
+# 공부 시간별 평균 성적 을 bar chart로 studytime 컬럼으로 groupby 
+st.subheader("2. 공부 시간별 평균 최종 성적 (G3 컬럼)")
+study_time_avg = df.groupby("studytime")["G3"].mean()
 
-# walc mean
+st.bar_chart(study_time_avg)
 
-st.subheader("3. 주말 알콜 섭취에 따른 평균 최종 성적")
-walc_score = df.groupby("Walc")["G3"].mean()
+# walc(주말 알콜 섭취) 에 따른 평균 성적 을 bar chart로
+st.subheader("3. Walc(주말 알콜 섭취) 에 따른 평균 성적")
+walc_time_avg = df.groupby("Walc")["G3"].mean()
 
-st.bar_chart(walc_score)
+st.bar_chart(walc_time_avg)
